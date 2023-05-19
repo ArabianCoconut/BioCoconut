@@ -1,2 +1,4 @@
-# BioCoconut_Bot
-Telegram bot for bioinformatic use.
+# BioCoconut
+## Telegram bot
+### Currently, in the making will update later
+
