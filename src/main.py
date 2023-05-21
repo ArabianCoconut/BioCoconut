@@ -17,7 +17,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 async def sequencer(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    message = 'Enter Sequences Followed by space and mode(Local, Global)\n Example: ATCG ATCG global'
+    message = 'Enter Sequences Followed by space and Mode(Local, Global)\nExample: ATCG ATCG global'
     await context.bot.send_message(chat_id=update.effective_chat.id, text=message)
 
 
