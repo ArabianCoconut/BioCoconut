@@ -1,13 +1,14 @@
 import multiprocessing
 import time
 
-from flask import Flask, redirect, request, url_for
+from flask import Flask, redirect, url_for
 from flask_cors import CORS
 
 import bot
 
 app = Flask(__name__)
 CORS(app)
+
 
 def start_app(host, port, debug=bool()) -> Flask:
     """
@@ -27,7 +28,7 @@ def start_app(host, port, debug=bool()) -> Flask:
 
 @app.route("/")
 def index():
-  HTML_CODE = """
+    HTML_CODE = """
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <div class="container mt-5">
@@ -74,26 +75,30 @@ def index():
       crossorigin="anonymous">
     </script>
     """
-  return HTML_CODE
-
+    return HTML_CODE
 
 
 # Donkey wokring for 10mins to prevent server spin down.
-@app.route("/donkey")
 def donkey_work():
-  if request.method == 'GET':
-    return redirect(url_for('void'))
-  while True:
-    multiprocessing.Process(target=bot.main).start()
-    time.sleep(600)
+    while True:
+        multiprocessing.Process(target=bot.main).start()
+        time.sleep(600)
+
+
+@app.route("/donkey")
+def donkey():
+    multiprocessing.Process(target=donkey_work).start()
+    return redirect(url_for("void"))
+
 
 @app.route("/void")
 def void():
-  HTML_CODE = """
+    HTML_CODE = """
   <h1>Donkey is working. Go away</h1>
   <button onclick="window.location.href = '/';">Go Back</button>
   """
-  return HTML_CODE
+    return HTML_CODE
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     app.run(threaded=True)
