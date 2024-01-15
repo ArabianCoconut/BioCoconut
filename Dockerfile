@@ -2,11 +2,6 @@ FROM python:3.11-slim
 
 # Add HEALTHCHECK instruction
 HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 CMD curl -f http://localhost:5000/ || exit 1
-
-# Add non-root user
-RUN useradd -m myuser
-USER myuser
-
 COPY . /app
 WORKDIR /app
 RUN pip install --no-cache-dir -r requirements.txt
@@ -18,5 +13,8 @@ ENV FLASK_APP=app.py
 ENV FLASK_RUN_HOST=0.0.0.0
 ENV FLASK_RUN_PORT=5000
 ENV FLASK_ENV=development
+
+RUN useradd -m myuser
+USER myuser
 
 CMD ["flask", "run"]
