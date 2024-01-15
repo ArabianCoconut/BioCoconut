@@ -1,10 +1,5 @@
-import os
-import threading
-from flask import Flask, render_template, request, redirect, url_for, Response
+from flask import Flask
 from flask_cors import CORS
-from Modules import Bio_sequencer
-import main as Bot
-
 app = Flask(__name__)
 CORS(app)
 
@@ -24,9 +19,10 @@ def start_app(host, port, debug=bool()) -> Flask:
         app.run(host=host, port=port, debug=False)
     return app
 
+
 @app.route("/")
 def index():
-    HTML_CODE= """
+    HTML_CODE = """
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <div class="container mt-5">
@@ -74,5 +70,3 @@ def index():
     </script>
     """
     return HTML_CODE
-
-
