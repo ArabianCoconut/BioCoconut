@@ -5,7 +5,6 @@ from telegram import Update
 from telegram.ext import *
 import Modules.Bio_sequencer as Bio
 
-load_dotenv()
 TOKEN = os.getenv('TOKEN')
 
 
@@ -34,7 +33,7 @@ def main():
     app = ApplicationBuilder().token(TOKEN).build()
     app.updater.start_webhook(
         listen="0.0.0.0",
-        port=int(os.environ.get('PORT', 5000)),
+        port=int(5000),
         url_path=TOKEN,
         webhook_url=f'https://telegram-2dfi.onrender.com/{TOKEN}'
     )
