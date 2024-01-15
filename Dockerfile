@@ -14,7 +14,8 @@ ENV FLASK_RUN_HOST=0.0.0.0
 ENV FLASK_RUN_PORT=5000
 ENV FLASK_ENV=development
 
-RUN useradd -m myuser
-USER myuser
-
 CMD ["flask", "run"]
+
+# create user
+RUN adduser -D donkey
+USER donkey
