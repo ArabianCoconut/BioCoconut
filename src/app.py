@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_cors import CORS
+from main import main as Bio
 app = Flask(__name__)
 CORS(app)
 
@@ -70,3 +71,7 @@ def index():
     </script>
     """
     return HTML_CODE
+
+if __name__ == "__main__":
+    app.run()
+    Bio()
