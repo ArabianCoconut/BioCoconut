@@ -1,13 +1,10 @@
 import logging
 import os
-from dotenv import load_dotenv
 from telegram import Update
 from telegram.ext import *
 import Modules.Bio_sequencer as Bio
 
 TOKEN = os.getenv('TOKEN')
-load_dotenv()
-
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     bot_text = "I'm a bot, Created by Arabian Coconut\nMade to do Biological computations"
