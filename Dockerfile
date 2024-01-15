@@ -15,7 +15,3 @@ ENV FLASK_RUN_PORT=5000
 ENV FLASK_ENV=development
 
 CMD ["flask", "run"]
-
-# create user
-RUN adduser -D donkey
-USER donkey
