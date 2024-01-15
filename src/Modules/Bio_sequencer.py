@@ -3,7 +3,6 @@
 * @Author: ArabianCoconut
 * @Version: Alpha build
 """
-import json
 import requests
 from Bio.Align import PairwiseAligner
 
@@ -31,10 +30,17 @@ def sequence_alignment(target: str, query: str, mode: str):
     alignments.mode = mode.lower()
     alignments = alignments.align(target, query)
     results: list = []
-    with open('Modules/alignment.txt', 'w') as file:
-        for alignment in alignments:
-            results.append(alignment)
-            file.write(str(alignment))
+    try:
+        with open('./Modules/alignment.txt', 'w') as file:
+            for alignment in alignments:
+                results.append(alignment)
+                file.write(str(alignment))
+    except(FileNotFoundError):
+        with open("./Modules/alignment.txt","x+") as file:
+            for alignment in alignments:
+                results.append(alignment)
+                file.write(str(alignment))
+
 
 
 # noinspection SpellCheckingInspection
@@ -51,5 +57,3 @@ def qr_code(qr):
     with open('static/qr.png', 'wb+') as file:
         file.write(req.content)
     return 0
-
-sequence_alignment("ATCG", "ATCG", "global")
