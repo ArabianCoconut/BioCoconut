@@ -4,7 +4,7 @@ from telegram import Update
 from telegram.ext import ContextTypes, CallbackContext, CommandHandler, MessageHandler, filters,ApplicationBuilder,Updater
 import Modules.Bio_sequencer as Bio
 
-TOKEN = os.getenv('TOKEN')
+TOKEN = os.environ.get('TOKEN')
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     bot_text = "I'm a bot, Created by Arabian Coconut\nMade to do Biological computations"
