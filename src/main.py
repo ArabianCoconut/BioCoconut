@@ -3,7 +3,6 @@ import os
 from dotenv import load_dotenv
 from telegram import Update
 from telegram.ext import *
-import asyncio
 import Modules.Bio_sequencer as Bio
 
 load_dotenv()
