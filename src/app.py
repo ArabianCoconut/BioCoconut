@@ -53,7 +53,7 @@ def index():
     <div class="row">
       <div class="col-md-3">
         <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
-          <div class="card-header">Web Servers</div>
+          <div class="card-header">Web Server</div>
           <div class="card-body">
             <h5 class="card-title">Active</h5>
             <p class="card-text">Web servers are active and usable.</p>
