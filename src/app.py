@@ -1,6 +1,7 @@
 import multiprocessing
+import re
 import time
-from flask import Flask
+from flask import Flask, redirect, url_for
 from flask_cors import CORS
 import bot
 app = Flask(__name__)
@@ -76,9 +77,11 @@ def index():
 # Donkey wokring for 10mins to prevent server spin down.
 @app.route("/donkey")
 def donkey_work():
+  Script = """ <script> window.location.href ="/"; </script> """
   while True:
     multiprocessing.Process(target=bot.main).start()
     time.sleep(600)
+    return Script
 
 
 if __name__ == '__main__':
