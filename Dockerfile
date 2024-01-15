@@ -17,6 +17,5 @@ ENV FLASK_ENV=development
 # Create user and add to group which can read all files in /app/*
 RUN groupadd -r appgroup && useradd -r -g appgroup appuser
 RUN chown -R appuser:appgroup /app/*
-USER appuser
-
 CMD ["flask", "run"]
+USER appuser
