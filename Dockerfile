@@ -13,4 +13,4 @@ ENV FLASK_RUN_PORT=5000
 ENV FLASK_ENV=development
 
 RUN python -m Modules.Bio_sequencer
-CMD ["python", "app.py"]
+CMD ["flask", "run"]
