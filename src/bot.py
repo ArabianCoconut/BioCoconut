@@ -1,7 +1,7 @@
 import logging
 import os
 from telegram import Update
-from telegram.ext import ContextTypes, CallbackContext, CommandHandler, MessageHandler, filters,ApplicationBuilder,Updater
+from telegram.ext import ContextTypes, CallbackContext, CommandHandler, MessageHandler, filters,ApplicationBuilder
 import Modules.Bio_sequencer as Bio
 
 TOKEN = os.environ.get('TOKEN')

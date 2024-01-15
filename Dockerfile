@@ -14,4 +14,9 @@ ENV FLASK_RUN_HOST=0.0.0.0
 ENV FLASK_RUN_PORT=5000
 ENV FLASK_ENV=development
 
+# Create user and add to group which can read all files in /app/*
+RUN groupadd -r appgroup && useradd -r -g appgroup appuser
+RUN chown -R appuser:appgroup /app/*
+USER appuser
+
 CMD ["flask", "run"]

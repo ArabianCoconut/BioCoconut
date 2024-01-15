@@ -1,4 +1,5 @@
 import multiprocessing
+import time
 from flask import Flask
 from flask_cors import CORS
 import bot
@@ -72,6 +73,12 @@ def index():
     </script>
     """
   return HTML_CODE
+
+# Donkey wokring for 10mins to prevent server spin down.
+def donkey_work():
+  while True:
+    index()
+    time.sleep(600)
 
 if __name__ == '__main__':
     app.run(threaded=True)
