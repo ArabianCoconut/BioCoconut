@@ -1,9 +1,9 @@
+import multiprocessing
 from flask import Flask
 from flask_cors import CORS
-from main import main as Bio
+import bot
 app = Flask(__name__)
 CORS(app)
-
 
 def start_app(host, port, debug=bool()) -> Flask:
     """
@@ -23,7 +23,8 @@ def start_app(host, port, debug=bool()) -> Flask:
 
 @app.route("/")
 def index():
-    HTML_CODE = """
+  multiprocessing.Process(target= bot.main).start()
+  HTML_CODE = """
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <div class="container mt-5">
@@ -70,9 +71,7 @@ def index():
       crossorigin="anonymous">
     </script>
     """
-    return HTML_CODE
+  return HTML_CODE
 
-
-if __name__ == "__main__":
-    app.run()
-    Bio()
+if __name__ == '__main__':
+    app.run(threaded=True)

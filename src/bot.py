@@ -1,7 +1,7 @@
 import logging
 import os
 from telegram import Update
-from telegram.ext import *
+from telegram.ext import ContextTypes, CallbackContext, CommandHandler, MessageHandler, filters,ApplicationBuilder,Updater
 import Modules.Bio_sequencer as Bio
 
 TOKEN = os.getenv('TOKEN')
@@ -26,22 +26,19 @@ async def sequence_handle(update: Update, context: CallbackContext):
     await update.message.reply_document(document=open('Modules/alignment.txt', 'rb'))
     os.remove('Modules/alignment.txt')
 
+async def secret(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    message = 'This is a secret message, I dont know what it is!'
+    await context.bot.send_message(chat_id=update.effective_chat.id, text=message)
+
 
 def main():
     app = ApplicationBuilder().token(TOKEN).build()
-    app.updater.start_webhook(
-        listen="0.0.0.0",
-        port=int(5000),
-        url_path=TOKEN,
-        webhook_url=f'https://telegram-2dfi.onrender.com/{TOKEN}'
-    )
-
     app.add_handler(CommandHandler('start', start))
     app.add_handler(CommandHandler('sequencer', sequencer))
+    app.add_handler(CommandHandler('secret', secret))
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, sequence_handle))
-    app.run_polling(5)
-
-
+    app.run_polling(2)
+    
 if __name__ == '__main__':
     logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
     logging.info('Starting Bot')
