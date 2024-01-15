@@ -76,4 +76,4 @@ def index():
     return HTML_CODE
 
 
-os.system('python3 ./src/main.py')
+os.system('python3 main.py')
