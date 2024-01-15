@@ -77,8 +77,8 @@ def index():
 # Donkey wokring for 10mins to prevent server spin down.
 def donkey_work():
   while True:
-    index()
     time.sleep(600)
+    index()
 
 if __name__ == '__main__':
     app.run(threaded=True)

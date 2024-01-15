@@ -37,7 +37,7 @@ def main():
     app.add_handler(CommandHandler('sequencer', sequencer))
     app.add_handler(CommandHandler('secret', secret))
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, sequence_handle))
-    app.run_polling(2)
+    app.run_polling(5)
     
 if __name__ == '__main__':
     logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
