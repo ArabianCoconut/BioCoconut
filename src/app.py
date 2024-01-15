@@ -72,6 +72,7 @@ def index():
     """
     return HTML_CODE
 
+
 if __name__ == "__main__":
     app.run()
     Bio()

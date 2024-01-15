@@ -6,6 +6,7 @@ from telegram.ext import *
 import Modules.Bio_sequencer as Bio
 
 TOKEN = os.getenv('TOKEN')
+load_dotenv()
 
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
