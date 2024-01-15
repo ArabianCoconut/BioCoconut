@@ -75,5 +75,5 @@ def index():
     """
     return HTML_CODE
 
-
-threading.Thread(target=os.system('python3 main.py')).start()
+if __name__ == '__main__':
+    Bot.main()
